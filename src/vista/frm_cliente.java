@@ -4,11 +4,9 @@
  */
 package vista;
 import modelo.Cliente;
+import modelo.Conexion;
 
-/**
- *
- * @author JDani
- */
+
 public class frm_cliente extends javax.swing.JFrame {
 
     /**
@@ -43,6 +41,7 @@ public class frm_cliente extends javax.swing.JFrame {
         txt_fn = new javax.swing.JTextField();
         btn_aceptar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        btn_conectar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -78,6 +77,13 @@ public class frm_cliente extends javax.swing.JFrame {
             }
         });
 
+        btn_conectar.setText("Conectar");
+        btn_conectar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_conectarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -88,7 +94,9 @@ public class frm_cliente extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btn_aceptar)
                         .addGap(28, 28, 28)
-                        .addComponent(jButton1))
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_conectar))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -107,7 +115,7 @@ public class frm_cliente extends javax.swing.JFrame {
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txt_fn, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(226, Short.MAX_VALUE))
+                .addContainerGap(147, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,7 +147,8 @@ public class frm_cliente extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_aceptar)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(btn_conectar))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
@@ -162,6 +171,14 @@ public class frm_cliente extends javax.swing.JFrame {
        obj_cliente.setNit(txt_nit.getText());
        obj_cliente.agregar();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btn_conectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_conectarActionPerformed
+        
+        Conexion cn = new Conexion();
+        cn.abrir_conexion();
+        
+        cn.cerrar_conexion();
+    }//GEN-LAST:event_btn_conectarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -200,6 +217,7 @@ public class frm_cliente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_aceptar;
+    private javax.swing.JButton btn_conectar;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
