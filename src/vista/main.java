@@ -8,7 +8,7 @@ package vista;
 public class main {
 
     public static void main(String[] args) {
-       frm_empleado frm = new frm_empleado();
+       frm_cliente frm = new frm_cliente();
        frm.show();
     }
     

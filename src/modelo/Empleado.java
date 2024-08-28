@@ -8,6 +8,14 @@ package modelo;
 public class Empleado extends Persona{
     
     private String codigo_empleado, puesto;
+
+    public Empleado(){}
+    
+    public Empleado(String nombres, String apellidos, String direccion, String telefono, String fecha_nacimiento, String codigo_empleado, String puesto) {
+        super(nombres, apellidos, direccion, telefono, fecha_nacimiento);
+        this.codigo_empleado = codigo_empleado;
+        this.puesto = puesto;
+    }
     
     public String getCodigo_empleado() {
         return codigo_empleado;

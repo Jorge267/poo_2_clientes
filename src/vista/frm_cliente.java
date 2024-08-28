@@ -14,8 +14,10 @@ public class frm_cliente extends javax.swing.JFrame {
     /**
      * Creates new form frm_cliente
      */
+    Cliente obj_cliente;
     public frm_cliente() {
         initComponents();
+        obj_cliente = new Cliente();
     }
 
     /**
@@ -40,6 +42,7 @@ public class frm_cliente extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txt_fn = new javax.swing.JTextField();
         btn_aceptar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,6 +71,13 @@ public class frm_cliente extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Modificar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -75,7 +85,10 @@ public class frm_cliente extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_aceptar)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btn_aceptar)
+                        .addGap(28, 28, 28)
+                        .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -124,7 +137,9 @@ public class frm_cliente extends javax.swing.JFrame {
                     .addComponent(txt_fn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(18, 18, 18)
-                .addComponent(btn_aceptar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_aceptar)
+                    .addComponent(jButton1))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
@@ -137,19 +152,16 @@ public class frm_cliente extends javax.swing.JFrame {
 
     private void btn_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_aceptarActionPerformed
         
-        Cliente obj_cliente = new Cliente();
-        obj_cliente.setNit(this.txt_nit.getText());
-        obj_cliente.setNombres(this.txt_nombres.getText());
-        obj_cliente.setApellidos(this.txt_apellidos.getText());
-        obj_cliente.setDireccion(this.txt_direccion.getText());
-        obj_cliente.setTelefono(this.txt_telefono.getText());
-        obj_cliente.setFecha_nacimiento(this.txt_fn.getText());
-        
-        
+        obj_cliente = new Cliente(txt_nit.getText(),txt_nombres.getText(),txt_apellidos.getText(),txt_direccion.getText(),txt_telefono.getText(),txt_fn.getText());
         obj_cliente.agregar();
-        
+ 
 
     }//GEN-LAST:event_btn_aceptarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       obj_cliente.setNit(txt_nit.getText());
+       obj_cliente.agregar();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,6 +200,7 @@ public class frm_cliente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_aceptar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

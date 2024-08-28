@@ -8,8 +8,18 @@ package modelo;
  *
  * @author JDani
  */
-abstract class Persona {
+public class Persona {
+    
     private String nombres, apellidos, direccion, telefono, fecha_nacimiento;
+
+    public Persona(){}
+    public Persona(String nombres, String apellidos, String direccion, String telefono, String fecha_nacimiento) {
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.telefono = telefono;
+        this.direccion = direccion;
+        this.fecha_nacimiento = fecha_nacimiento;
+    }
 
     public String getNombres() {
         return nombres;
@@ -50,16 +60,8 @@ abstract class Persona {
     public void setFecha_nacimiento(String fecha_nacimiento) {
         this.fecha_nacimiento = fecha_nacimiento;
     }
-   
-    public void agregar(){
-        
-    }
     
-    protected void modifivar(){
-        
-    }
-    
-    protected void eliminar(){
-        
-    }
+    public void agregar(){}
+    protected void modificar(){}
+    protected void eliminar(){}
 }

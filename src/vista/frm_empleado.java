@@ -10,9 +10,8 @@ import modelo.Empleado;
  */
 public class frm_empleado extends javax.swing.JFrame {
 
-    /**
-     * Creates new form frm_empleado
-     */
+  
+    Empleado obj_empleado;
     public frm_empleado() {
         initComponents();
     }
@@ -143,15 +142,9 @@ public class frm_empleado extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_nombresActionPerformed
 
     private void btn_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_aceptarActionPerformed
-        Empleado obj_empleado = new Empleado();
-        obj_empleado.setNombres(this.txt_nombres.getText());
-        obj_empleado.setApellidos(this.txt_apellidos.getText());
-        obj_empleado.setDireccion(this.txt_direccion.getText());
-        obj_empleado.setTelefono(this.txt_telefono.getText());
-        obj_empleado.setFecha_nacimiento(this.txt_fn.getText());
-        obj_empleado.setCodigo_empleado(this.txt_codigo.getText());
-        obj_empleado.setPuesto(this.txt_puesto.getText());
-        
+
+        obj_empleado = new Empleado(txt_nombres.getText(),txt_apellidos.getText(),txt_direccion.getText(),txt_telefono.getText(),txt_fn.getText(),txt_codigo.getText(),txt_puesto.getText());
+
         obj_empleado.agregar();
     }//GEN-LAST:event_btn_aceptarActionPerformed
 
