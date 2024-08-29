@@ -62,6 +62,6 @@ public class Persona {
     }
     
     public void agregar(){}
-    protected void modificar(){}
-    protected void eliminar(){}
+    public void actualizar(){}
+    public void eliminar(){}
 }
