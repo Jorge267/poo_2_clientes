@@ -12,8 +12,11 @@ public class frm_empleado extends javax.swing.JFrame {
     Empleado obj_empleado;
     public frm_empleado() {
         initComponents();
+        obj_empleado = new Empleado();
+        tbl_empleados.setModel(obj_empleado.leer());
     }
 
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -166,6 +169,8 @@ public class frm_empleado extends javax.swing.JFrame {
 
         obj_empleado = new Empleado(txt_nombres.getText(),txt_apellidos.getText(),txt_direccion.getText(),txt_telefono.getText(),txt_fn.getText(),txt_codigo.getText(),this.cb_puestos.getSelectedIndex());
         obj_empleado.agregar();
+        tbl_empleados.setModel(obj_empleado.leer());
+
     }//GEN-LAST:event_btn_aceptarActionPerformed
 
     private void cb_puestosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_puestosActionPerformed

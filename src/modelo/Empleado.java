@@ -67,6 +67,45 @@ public class Empleado extends Persona{
         }
     }
 
+        
+    public DefaultTableModel leer(){
+        
+        DefaultTableModel tabla = new DefaultTableModel();
+        
+        try{
+            cn = new Conexion();
+            cn.abrir_conexion();
+            String query = "SELECT e.id_empleado, e.codigo, e.nombres, e.apellidos, e.direccion, e.telefono, e.fecha_nacimiento, p.puesto FROM empleados e INNER JOIN puestos p ON e.id_puesto = p.id_puesto;";
+            ResultSet consulta = cn.conexionBD.createStatement().executeQuery(query);
+            
+            String encabezado [ ] = {"ID empleado","Codigo","Nombres","Apellidos","Direccion","Telefono","Fecha Nacimiento","Puesto"};
+            tabla.setColumnIdentifiers(encabezado);
+            String datos [ ] = new String [8];
+            
+            while (consulta.next()){
+                datos[0] = consulta.getString("id_empleado");
+                datos[1] = consulta.getString("codigo");
+                datos[2] = consulta.getString("nombres");
+                datos[3] = consulta.getString("apellidos");
+                datos[4] = consulta.getString("direccion");
+                datos[5] = consulta.getString("telefono");
+                datos[6] = consulta.getString("fecha_nacimiento");
+                datos[7] = consulta.getString("puesto");
+                
+                tabla.addRow(datos);
+                
+            }
+            
+            cn.cerrar_conexion();
+        }catch(HeadlessException | SQLException ex){
+            cn.cerrar_conexion();
+            System.out.println("Error..." + ex.getMessage());
+        }
+
+        
+        return tabla;
+    }
+    
 
 
 }
