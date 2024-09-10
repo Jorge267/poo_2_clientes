@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package vista;
+import java.util.HashSet;
+import java.util.Set;
 import modelo.Empleado;
 
 
@@ -41,6 +43,8 @@ public class frm_empleado extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         lbl_id_empleado = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        btn_eliminar = new javax.swing.JButton();
+        btn_limpiar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -124,6 +128,20 @@ public class frm_empleado extends javax.swing.JFrame {
             }
         });
 
+        btn_eliminar.setText("Eliminar");
+        btn_eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_eliminarActionPerformed(evt);
+            }
+        });
+
+        btn_limpiar.setText("Limpiar");
+        btn_limpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_limpiarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -158,7 +176,9 @@ public class frm_empleado extends javax.swing.JFrame {
                         .addGap(52, 52, 52)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btn_aceptar)
-                            .addComponent(jButton1))))
+                            .addComponent(jButton1)
+                            .addComponent(btn_eliminar)
+                            .addComponent(btn_limpiar))))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -181,11 +201,13 @@ public class frm_empleado extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txt_direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_eliminar))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txt_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_limpiar))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -197,7 +219,7 @@ public class frm_empleado extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(cb_puestos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -259,9 +281,39 @@ public class frm_empleado extends javax.swing.JFrame {
         tbl_empleados.setModel(obj_empleado.leer());
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarActionPerformed
+        obj_empleado = new Empleado();
+        obj_empleado.setId_empleado(Integer.parseInt(lbl_id_empleado.getText()));
+        obj_empleado.eliminar();
+        tbl_empleados.setModel(obj_empleado.leer());
+        
+        lbl_id_empleado.setText("-");
+        txt_nombres.setText(" ");
+        txt_apellidos.setText(" ");
+        txt_direccion.setText(" ");
+        txt_telefono.setText(" ");
+        txt_fn.setText(" ");
+        txt_codigo.setText(" ");
+        cb_puestos.setSelectedIndex(0);
+        
+    }//GEN-LAST:event_btn_eliminarActionPerformed
+
+    private void btn_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_limpiarActionPerformed
+        lbl_id_empleado.setText("-");
+        txt_nombres.setText(" ");
+        txt_apellidos.setText(" ");
+        txt_direccion.setText(" ");
+        txt_telefono.setText(" ");
+        txt_fn.setText(" ");
+        txt_codigo.setText(" ");
+        cb_puestos.setSelectedIndex(0);
+    }//GEN-LAST:event_btn_limpiarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_aceptar;
+    private javax.swing.JButton btn_eliminar;
+    private javax.swing.JButton btn_limpiar;
     private javax.swing.JComboBox<String> cb_puestos;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;

@@ -114,6 +114,26 @@ public class Empleado extends Persona{
         }
     }
 
+        @Override
+    public void eliminar(){
+          try{
+          PreparedStatement parametro;
+
+          String query = "DELETE FROM empleados WHERE id_empleado = ?";
+
+          cn = new Conexion();
+          cn.abrir_conexion();
+          parametro = (PreparedStatement) cn.conexionBD.prepareStatement(query);
+          parametro.setInt(1, this.getId_empleado());
+
+          int ejecutar = parametro.executeUpdate();
+          cn.cerrar_conexion();
+          JOptionPane.showMessageDialog(null, Integer.toString(ejecutar) + " Registro eliminado", "Eliminar", JOptionPane.INFORMATION_MESSAGE);
+        }catch(HeadlessException | SQLException ex){
+            System.out.println("Error..." + ex.getMessage());
+        }
+    }
+
         
     public DefaultTableModel leer(){
         
