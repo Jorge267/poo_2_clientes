@@ -10,6 +10,9 @@ public class main {
     public static void main(String[] args) {
        frm_empleado frm = new frm_empleado();
        frm.show();
+       
+       frm_cliente frm2 = new frm_cliente();
+       frm2.show();
     }
     
 }
