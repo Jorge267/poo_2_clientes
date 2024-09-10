@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 public class Empleado extends Persona{
     
     private String codigo;
-    private int id_puesto;
+    private int id_puesto, id_empleado;
     Conexion cn;
 
     public Empleado(){}
@@ -23,6 +23,15 @@ public class Empleado extends Persona{
         super(nombres, apellidos, direccion, telefono, fecha_nacimiento);
         this.codigo = codigo_empleado;
         this.id_puesto = id_puesto;
+        
+    }
+    
+    public Empleado(int id_empleado, String nombres, String apellidos, String direccion, String telefono, String fecha_nacimiento, String codigo_empleado, int id_puesto) {
+        super(nombres, apellidos, direccion, telefono, fecha_nacimiento);
+        this.codigo = codigo_empleado;
+        this.id_puesto = id_puesto;
+        this.id_empleado = id_empleado;
+        
     }
     
     public String getCodigo() {
@@ -40,6 +49,15 @@ public class Empleado extends Persona{
     public void setId_puesto(int id_puesto) { 
         this.id_puesto = id_puesto;
     }
+      
+    public int getId_empleado() {
+        return id_empleado;
+    }
+
+    public void setId_empleado(int id_empleado) {
+        this.id_empleado = id_empleado;
+    }
+    
     
     @Override
     public void agregar(){
@@ -62,6 +80,35 @@ public class Empleado extends Persona{
           int ejecutar = parametro.executeUpdate();
           cn.cerrar_conexion();
           JOptionPane.showMessageDialog(null, Integer.toString(ejecutar) + " Registro ingresado", "Agregar", JOptionPane.INFORMATION_MESSAGE);
+        }catch(HeadlessException | SQLException ex){
+            System.out.println("Error..." + ex.getMessage());
+        }
+    }
+    
+    @Override
+    public void actualizar(){
+          try{
+          PreparedStatement parametro;
+
+          String query = "UPDATE empleados SET codigo = ?, nombres = ?, apellidos = ?, direccion = ?, telefono = ?, fecha_nacimiento = ?, id_puesto = ? WHERE id_empleado = ?";
+
+          cn = new Conexion();
+          cn.abrir_conexion();
+          parametro = (PreparedStatement) cn.conexionBD.prepareStatement(query);
+          parametro.setString(1, this.getCodigo());
+          parametro.setString(2, this.getNombres());
+          parametro.setString(3, this.getApellidos());
+          parametro.setString(4, this.getDireccion());
+          parametro.setString(5, this.getTelefono());
+          parametro.setString(6, this.getFecha_nacimiento());
+          parametro.setInt(7, this.getId_puesto());
+          parametro.setInt(8, this.getId_empleado());
+          System.out.println("El id del empleado es" + getId_empleado());
+          System.out.println("El id del puesto es" + getId_puesto());
+          
+          int ejecutar = parametro.executeUpdate();
+          cn.cerrar_conexion();
+          JOptionPane.showMessageDialog(null, Integer.toString(ejecutar) + " Registro actualizad", "Actualizar", JOptionPane.INFORMATION_MESSAGE);
         }catch(HeadlessException | SQLException ex){
             System.out.println("Error..." + ex.getMessage());
         }
@@ -92,20 +139,16 @@ public class Empleado extends Persona{
                 datos[6] = consulta.getString("fecha_nacimiento");
                 datos[7] = consulta.getString("puesto");
                 
-                tabla.addRow(datos);
-                
-            }
-            
+                tabla.addRow(datos);  
+            }  
             cn.cerrar_conexion();
         }catch(HeadlessException | SQLException ex){
             cn.cerrar_conexion();
             System.out.println("Error..." + ex.getMessage());
         }
-
-        
         return tabla;
     }
-    
+
 
 
 }
